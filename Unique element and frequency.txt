@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    // Size of below 2 arrays
+    int size=0;
+    // Arrays to store the element and frequency
+    int unique[n];
+    int count[n];
+    int check,count2;
+    for(int i=0;i<n;i++){
+        // To check if the element is present in the array
+        check=0;
+        for(int j=0;j<size;j++){
+            if(arr[i]==unique[j]){
+                // Element found
+                check=1;
+                break;
+            }
+        }
+        if(check==0){
+            unique[size]=arr[i];
+            // counting the element
+            count2=0;
+            for(int z=0;z<n;z++){
+                if(arr[i]==arr[z]){
+                    count2++;
+                }
+            }
+            count[size]=count2;
+            ++size;
+        }
+    }
+    // Printing the arrays
+    cout<<"Element\t"<<"Frequency"<<endl;
+    for(int m=0;m<size;m++){
+        cout<<unique[m]<<"\t"<<count[m]<<endl;
+    }
+    return 0;
+}

@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+string upper(string name);
+class Person{
+    string name;
+    int age;
+    string gender;
+    public:
+    Person(string name1,int age1,string gender1){
+        name=name1;
+        age=age1;
+        gender=gender1;
+    }
+    void printinfo(){
+        cout<<upper(name)<<" "<<age<<" "<<upper(gender)<<endl;
+    }
+};
+
+int main()
+{
+    string name,gender;
+    int age;
+    cin>>name>>age>>gender;
+    Person p1(name,age,gender);
+    p1.printinfo();
+    return 0;
+}
+
+
+string upper(string name){
+    string ans;
+    int check;
+    for(int i=0;name[i]!='\0';i++){
+        check=name[i];
+        if(check>=97 &&check<123){
+            ans+=(name[i]-32);
+        }
+        else{
+            ans+=name[i];
+        }
+    }
+    return ans;
+}

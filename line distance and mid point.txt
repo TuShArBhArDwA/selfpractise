@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct line{
+    int x1,x2,y1,y2;
+};
+
+int main(){
+    int x1,x2,y1,y2;
+    cin>>x1>>y1>>x2>>y2;
+    line l1;
+    l1.x1=x1;
+    l1.x2=x2;
+    l1.y1=y1;
+    l1.y2=y2;
+    float distance=pow((pow((x2-x1),2)+pow((y2-y1),2)),0.5);
+    float midpointx=(x1+x2)/2.0;
+    float midpointy=(y1+y2)/2.0;
+    cout<<"Distance: "<<fixed<<setprecision(2)<<distance<<endl;
+    cout<<"Midpoint: "<<fixed<<setprecision(2)<<midpointx<<" "<<fixed<<setprecision(2)<<midpointy<<endl;
+    return 0;
+}

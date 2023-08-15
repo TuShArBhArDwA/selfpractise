@@ -1,0 +1,301 @@
+#include <iostream>
+#include <climits>
+
+using namespace std;
+
+void printarray(int arr[],int size);
+void bubblesort(int arr[],int size);
+void insertionsort(int arr[],int size);
+void selectionsort(int arr[],int size);
+int linearsearch(int arr[],int size,int element);
+int binarysearch(int arr[],int size,int element);
+int max1(int arr[],int size);
+int min1(int arr[],int size);
+void pop(int arr[],int* size,int index);
+void pop(int arr[],int* size);
+void deleteatfirst(int arr[],int* size);
+void insert(int arr[],int* size,int index,int element);
+void insertatfirst(int arr[],int* size,int element);
+void insertatlast(int arr[],int* size,int element);
+void UpdateElement(int arr[],int size,int index,int element);
+
+
+int main()
+{   
+    cout<<"Please enter the size of array-> ";
+    int size,element,ans,index;
+    cin>>size;
+    int arr[size];
+    cout<<"Please enter the elements of the array:- "<<endl;
+    for(int i=0;i<size;i++){
+        cin>>arr[i];
+    }
+    int check=1;
+    int operation;
+    do{
+        cout<<"\n\n";
+        cout<<"Please choose the no. of the operation you want to perform:-"<<endl;
+        cout<<"1.) Print Array\n"<<"2.) Bubble Sort\n"<<"3.) Insertion Sort\n"<<"4.) Selection Sort\n";
+        cout<<"5.) Linear Search\n"<<"6.) Binary Search\n"<<"7.) Find Maximum\n"<<"8.) Find Minimum\n";
+        cout<<"9.) Delete Element of specific index\n"<<"10.) Delete First Element\n"<<"11.) Delete Last Element\n";
+        cout<<"12.) Insert Element at specific index\n"<<"13.) Insert Element at First\n"<<"14.) Insert Element at Last\n";
+        cout<<"15.) Update element of specific index\n"<<"16.) Exit from the program\n";
+        cout<<"Enter -> ";
+        cin>>operation;
+        switch(operation){
+            case 1:
+            printarray(arr,size);
+            break;
+            case 2:
+            bubblesort(arr,size);
+            cout<<"\n Array is sorted :)";
+            break;
+            case 3:
+            insertionsort(arr,size);
+            cout<<"\n Array is sorted :)";
+            break;
+            case 4:
+            selectionsort(arr,size);
+            cout<<"\n Array is sorted :)";
+            break;
+            case 5:
+            cout<<"\nEnter the Element you want to Search-> ";
+            cin>>element;
+            ans=linearsearch(arr,size,element);
+            (ans==-1)?cout<<"Element not found !\n":cout<<"Element found at index -> "<<ans<<endl;
+            break;
+            case 6:
+            int element;
+            cout<<"\nEnter the Element you want to Search-> ";
+            cin>>element;
+            ans=binarysearch(arr,size,element);
+            (ans==-1)?cout<<"Element not found !\n":cout<<"Element found at index -> "<<ans<<endl;
+            break;
+            case 7:
+            ans=max1(arr,size);
+            cout<<"Maximum element present in the array is -> "<<ans<<endl;
+            break;
+            case 8:
+            ans=min1(arr,size);
+            cout<<"Minimum element present in the array is -> "<<ans<<endl;
+            break;
+            case 9:
+            cout<<"\nEnter the index of the Element you want to Delete-> ";
+            cin>>index;
+            pop(arr,&size,index);
+            
+            break;
+            case 10:
+            deleteatfirst(arr,&size);
+            break;
+            case 11:
+            pop(arr,&size);
+            break;
+            case 12:
+            cout<<"\nEnter the Element-> ";
+            cin>>element;
+            cout<<"\nEnter the index where you want to insert the element-> ";
+            cin>>index;
+            insert(arr,&size,index,element);
+            break;
+            case 13:
+            cout<<"\nEnter the Element-> ";
+            cin>>element;
+            insertatfirst(arr,&size,element);
+            break;
+            case 14:
+            cout<<"\nEnter the Element-> ";
+            cin>>element;
+            insertatlast(arr,&size,element);
+            break;
+            case 15:
+            cout<<"\nEnter the index where you want to update the element-> ";
+            cin>>index;
+            cout<<"\nEnter the Element-> ";
+            cin>>element;
+            UpdateElement(arr,size,index,element);
+            break;
+            case 16:
+            check=0;
+            break;
+            default:
+            cout<<"Invalid Number Entered, Try Again !!!\n";
+        }
+    }
+    while(check!=0);
+    cout<<"\nThanks for using my program :)"<<endl;
+    return 0;
+}
+
+
+void bubblesort(int arr[],int size){
+for(int k=0;k<size;k++){
+        for(int l=0;l<size-1;l++){
+            if(arr[l]>arr[l+1]){
+                int temp;
+                temp=arr[l];
+                arr[l]=arr[l+1];
+                arr[l+1]=temp;
+            }
+        }
+    }
+}
+
+int linearsearch(int arr[],int size,int element){
+    int index=-1;
+    for(int i=0;i<size;i++){
+        if (arr[i]==element){
+            return i;
+        }
+    }
+    return index;
+}
+
+int binarysearch(int arr[],int size,int element){
+    int index=-1;
+    int start=0,end=size;
+    int mid;
+    while(start<=end){
+        mid=(start+end)/2;
+        if(arr[mid]==element){
+            return mid;
+        }
+        else if(element>mid){
+            start=mid+1;
+        }
+        else{
+            end=mid-1;
+        }
+    }
+    return index;
+}
+
+int max1(int arr[],int size){
+    cout<<endl;
+    int ans=INT_MIN;
+    for(int i=0;i<size;i++){
+        if(ans<arr[i]){
+            ans=arr[i];
+        }
+        else{
+            continue;
+        }
+    }
+    return ans;
+}
+
+int min1(int arr[],int size){
+    cout<<endl;
+    int ans=INT_MAX;
+    for(int i=0;i<size;i++){
+        if(ans>arr[i]){
+            ans=arr[i];
+        }
+        else{
+            continue;
+        }
+    }
+    return ans;
+}
+
+void printarray(int arr[],int size){
+    cout<<endl;
+    for(int i=0;i<size;i++){
+        cout<<arr[i]<<" ";  
+    }
+}
+
+void selectionsort(int arr[],int size){
+    for(int i=0;i<size-1;i++){
+        for(int j=i+1;j<size;j++){
+            if(arr[i]>arr[j]){
+                int temp;
+                temp=arr[i];
+                arr[i]=arr[j];
+                arr[j]=temp;
+            }
+        }
+    }
+}
+
+void insertionsort(int arr[],int size){
+    for(int i=1;i<size;i++){
+        int current=arr[i];
+        int j=i-1;
+        while(arr[j]>current && j>=0){
+            arr[j+1]=arr[j];
+            j--;
+        }
+        arr[j+1]=current;
+    }
+}
+
+void pop(int arr[],int* size){
+    --*size;
+    cout<<"\nElement deleted successfully :)";
+}
+
+void insertatfirst(int arr[],int* size,int element){
+    ++*size;
+    for(int i=*size-1;i>0;i--){
+        arr[i]=arr[i-1];
+    }
+    arr[0]=element;
+    cout<<"\nElement inserted successfully :)";
+}
+
+void insertatlast(int arr[],int* size,int element){
+    ++*size;
+    arr[*size-1]=element;
+    cout<<"\nElement inserted successfully :)";
+}
+
+void pop(int arr[],int* size,int index){
+    if(index<0||index>=*size){
+        cout<<"\nInvalid Index"<<endl;
+    }
+    else{
+        for(int i=index;i<*size;i++){
+            arr[i]=arr[i+1];
+    }
+    --*size; 
+    cout<<"\nElement deleted successfully :)";
+    }
+}
+
+void insert(int arr[],int* size,int index,int element){
+    if(index<0||index>=*size){
+        cout<<"\nInvalid Index"<<endl;
+    }
+    else{
+    ++*size;
+    for(int i=*size-1;i>0;i--){
+        if(i==index){
+            break;
+        }
+        else{
+            arr[i]=arr[i-1];
+        }
+    }
+    arr[index]=element;
+    cout<<"\nElement inserted successfully :)";
+    }
+}
+
+void deleteatfirst(int arr[],int* size){
+    for(int i=0;i<*size-1;i++){
+        arr[i]=arr[i+1];
+    }
+    --*size;
+    cout<<"\nElement deleted successfully :)";
+}
+
+void UpdateElement(int arr[],int size,int index,int element){
+    if(index<0||index>=size){
+        cout<<"\nInvalid Index"<<endl;
+    }
+    else{
+        arr[index]=element;
+    }
+    cout<<"\nIndex element updated successfully :)";
+}
