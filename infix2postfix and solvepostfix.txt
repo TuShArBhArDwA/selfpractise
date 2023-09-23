@@ -50,7 +50,7 @@ string infixtopostfix(string name){
     return ans;
 }
 
-void postfixtodecimal(string name){
+void solvepostfix(string name){
     stack<int> s1;
     char ch;
     int a,b;
@@ -93,6 +93,6 @@ int main(){
         cout<<"False\n";
         cout<<infixtopostfix("a+b*(c^d-e)^(f+g*h)-i");
     }
-    postfixtodecimal("12*34+5-+");
+    solvepostfix("12*34+5-+");
     return 0;
 }
