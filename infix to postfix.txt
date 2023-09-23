@@ -1,7 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-//Function to check the precedence between the operators
 int prec(char ch){
     if(ch=='^'){
         return 3;
@@ -19,28 +18,29 @@ int prec(char ch){
 
 string infixtopostfix(string name){
     string ans;
-    stack <char> s1;
+    stack<char>s1;
+    char ch;
     for(int i=0;name[i]!='\0';i++){
-        if((name[i]>='a'&&name[i]<='z')||(name[i]>='A'&&name[i]<='Z')){
-            ans+=name[i];
+        ch=name[i];
+        if((ch>='a'&&ch<='z')||(ch>='A'&&ch<='Z')){
+            ans+=ch;
         }
-        else if(name[i]=='('){
+        else if(ch=='('){
             s1.push('(');
         }
-        else if(name[i]==')'){
+        else if(ch==')'){
             while(s1.top()!='('){
                 ans+=s1.top();
                 s1.pop();
             }
-            // To pop '('
             s1.pop();
         }
         else{
-            while(!s1.empty()&&(prec(s1.top())>=prec(name[i]))){
+            while(!s1.empty()&&(prec(s1.top())>=prec(ch))){
                 ans+=s1.top();
                 s1.pop();
             }
-            s1.push(name[i]);
+            s1.push(ch);
         }
     }
     while(!s1.empty()){
@@ -50,6 +50,38 @@ string infixtopostfix(string name){
     return ans;
 }
 
+void postfixtodecimal(string name){
+    stack<int> s1;
+    char ch;
+    int a,b;
+    int op;
+    for(int i=0;name[i]!='\0';i++){
+        ch=name[i];
+        if(ch>='0'&&ch<='9'){
+            s1.push(ch-'0');
+        }
+        else{
+            b=s1.top();
+            s1.pop();
+            a=s1.top();
+            s1.pop();
+            switch(ch){
+                case '+':op=a+b;
+                break;
+                case '-':op=a-b;
+                break;
+                case '*':op=a*b;
+                break;
+                case '/':op=a/b;
+                break;
+                case '^':op=pow(a,b);
+                break;
+            }
+            s1.push(op);
+        }
+    }
+    cout<<s1.top();
+}
 int main(){
     //Expected Ouput
     string name="abcd^e-fgh*+^*+i-";
@@ -61,5 +93,6 @@ int main(){
         cout<<"False\n";
         cout<<infixtopostfix("a+b*(c^d-e)^(f+g*h)-i");
     }
+    postfixtodecimal("12*34+5-+");
     return 0;
 }
