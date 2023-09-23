@@ -1,0 +1,65 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+//Function to check the precedence between the operators
+int prec(char ch){
+    if(ch=='^'){
+        return 3;
+    }
+    else if(ch=='*'||ch=='/'){
+        return 2;
+    }
+    else if(ch=='+'||ch=='-'){
+        return 1;
+    }
+    else{
+        return -1;
+    }
+}
+
+string infixtopostfix(string name){
+    string ans;
+    stack <char> s1;
+    for(int i=0;name[i]!='\0';i++){
+        if((name[i]>='a'&&name[i]<='z')||(name[i]>='A'&&name[i]<='Z')){
+            ans+=name[i];
+        }
+        else if(name[i]=='('){
+            s1.push('(');
+        }
+        else if(name[i]==')'){
+            while(s1.top()!='('){
+                ans+=s1.top();
+                s1.pop();
+            }
+            // To pop '('
+            s1.pop();
+        }
+        else{
+            while(!s1.empty()&&(prec(s1.top())>=prec(name[i]))){
+                ans+=s1.top();
+                s1.pop();
+            }
+            s1.push(name[i]);
+        }
+    }
+    while(!s1.empty()){
+        ans+=s1.top();
+        s1.pop();
+    }
+    return ans;
+}
+
+int main(){
+    //Expected Ouput
+    string name="abcd^e-fgh*+^*+i-";
+    //Testing the code
+    if(name==infixtopostfix("a+b*(c^d-e)^(f+g*h)-i")){
+        cout<<"True";
+    }
+    else{
+        cout<<"False\n";
+        cout<<infixtopostfix("a+b*(c^d-e)^(f+g*h)-i");
+    }
+    return 0;
+}
