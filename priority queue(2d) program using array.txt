@@ -1,0 +1,76 @@
+// Snippet of the code if there is no exit option in the program (no. of input is not defined)
+/*while(true){
+int option;
+if (!(cin >> option)) {
+break;
+}
+}*/
+
+// Program of adding,deleting and viewing the priority queue(2d) using array
+int main(){
+    int n=1;
+    int x;
+    string a;
+    int b;
+    double c;
+    string arr[100];
+    string dup[100];
+    int arr1[100],arr2[100];
+    int count=0;
+    int start=0;
+    while(n!=0){
+        cin>>x;
+        switch(x){
+            case 1:
+            cin>>a;
+            cin>>b;
+            cin>>c;
+            arr[count]=a;
+            dup[count]=a;
+            arr1[count]=b;
+            arr2[count]=b;
+            count++;
+            cout<<"Flight added to the system.";
+            cout<<endl;
+            break;
+            case 2:
+            if(count==0){
+                cout<<"No flights available."<<endl;
+            }
+            else{
+                sort(arr2,count);
+                int index;
+                for(int j=0;j<count;j++){
+                for(int k=0;k<count;k++){
+                    if(arr2[j]==arr1[k]){
+                        index=k;
+                        break;
+                    }
+                }
+                arr[j]=dup[index];
+                }
+                cout<<"Booked ticket for flight: "<<arr[start]<<endl;
+                start++;
+                if(start==count){
+                    start=0;
+                    count=0;
+                }
+            }
+            break;
+            case 3:
+            if(count==0){
+                cout<<"No flights available."<<endl;
+            }
+            else{
+                    cout<<"Next available flight: "<<arr[start]<<endl;
+            }
+            break;
+            case 4: n=0;
+            cout<<"Exiting the application.";
+            break;
+            default:
+            cout<<"Invalid choice."<<endl;
+            break;
+        }
+    }
+}
