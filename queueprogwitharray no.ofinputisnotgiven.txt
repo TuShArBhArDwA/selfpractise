@@ -1,0 +1,55 @@
+// Program to insert,delete and view in the queue using array (if there is no option to exit from the program i.e. no. of inputs are not fixed)
+#include<iostream>
+using namespace std;
+int main(){
+    int option;
+    int x;
+    int arr[5];
+    int count=0;
+    int start=0;
+    while(1){
+	//checking if user is giving input or not
+        if(!(cin>>option)){
+            break;
+        }
+        switch(option){
+            case 1:
+            cin>>x;
+            if(count==5){
+                cout<<"Queue is full."<<endl;
+            }
+            else{
+                arr[count]=x;
+                count++;
+                cout<<x<<" is inserted in the queue."<<endl;
+            }
+            break;
+            case 2:
+            if(count==0){
+                cout<<"Queue is empty."<<endl;
+            }
+            else{
+                cout<<"Deleted number is: "<<arr[start]<<endl;
+                start++;
+                if(start==count){
+                    start=0;
+                    count=0;
+                }
+            }
+            break;
+            case 3:
+            if(count==0){
+                cout<<"Queue is empty."<<endl;
+            }
+            else{
+                cout<<"Elements in the queue are: ";
+                for(int i=start;i<count;i++){
+                    cout<<arr[i]<<" ";
+                }
+                cout<<endl;
+            }
+            break;
+            default:cout<<"Invalid option."<<endl;
+        }
+    }
+}
