@@ -1,10 +1,12 @@
 // Snippet of the code if there is no exit option in the program (no. of input is not defined)
-/*while(true){
+/*
+while(true){
 int option;
 if (!(cin >> option)) {
 break;
 }
-}*/
+}
+*/
 
 // Program of adding,deleting and viewing the priority queue(2d) using array
 int main(){
