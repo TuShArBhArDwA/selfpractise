@@ -1,0 +1,22 @@
+// Hanoi Tower problem Sol. using Recursion
+#include<bits/stdc++.h>
+using namespace std;
+
+void hanoi(int n,char src,char des,char aux){
+    
+    //Base Class
+    if(n==0){
+        return;
+    }
+    
+    hanoi(n-1,src,aux,des);
+    cout<<"Moving Disk "<<n<<" from -> "<<src<<" to -> "<<des<<endl;
+    hanoi(n-1,aux,des,src);
+}
+
+int main(){
+    int n;
+    cin>>n;
+    hanoi(n,'A','B','C');
+    return 0;
+}
