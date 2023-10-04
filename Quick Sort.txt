@@ -18,7 +18,7 @@ int partition(int arr[],int s,int e){
     int j=e;
     // Now ensuring (<a|a|>a) this condition
     while(i<pivotindex&&j>pivotindex){
-        while(arr[i]<p){
+        while(arr[i]<=p){
             i++;
         }
         while(arr[j]>p){
