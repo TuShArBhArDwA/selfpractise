@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// Class of Node
+class node{
+    public:
+    int data;
+    node* left;
+    node* right;
+    node(int val){
+        this->data=val;
+        this->left=NULL;
+        this->right=NULL;
+    }
+};
+
+// Class of Creating Tree using Node class
+node* tree(node* root){
+    cout<<"Enter the data: ";
+    int data;
+    cin>>data;
+    root=new node(data);
+    // If we don't want any value or want NULL
+    if(data==-1){
+        return NULL;
+    }
+    cout<<"Enter the data you want to insert in the left of "<<data<<endl;
+    root->left=tree(root->left);
+    cout<<"Enter the data you want to insert in the right of "<<data<<endl;
+    root->right=tree(root->right);
+    return root;
+}
+
+// Main Class
+int main(){
+    node* root=NULL;
+    root=tree(root);
+    
+    return 0;
+}

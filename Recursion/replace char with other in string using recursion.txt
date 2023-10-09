@@ -1,0 +1,21 @@
+// replace pi->3.14 else skip using recursion
+#include <bits/stdc++.h>
+using namespace std;
+string fun(string x,int y){
+    if(x[y]=='\0'){
+        return "\0";
+    }
+    if(x[y]=='p'&&x[y+1]=='i'){
+    return "3.14"+fun(x,y+2);
+    }
+     else{
+         return x[y]+fun(x,y+1);
+     }   
+    }
+int main()
+{
+    string n;
+    cin>>n;
+    cout<<fun(n,0);
+    return 0;
+}

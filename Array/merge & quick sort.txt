@@ -1,0 +1,130 @@
+//Merge Sort
+#include<bits/stdc++.h>
+using namespace std;
+void merge(int arr[],int s,int e){
+    int mid=(s+e)/2;
+    int left=mid-s+1;
+    int right=e-mid;
+    // Splitting the array by mid
+    int* l=new int[left];
+    int* r=new int[right];
+    int k=s;
+    // Adding values in the splitted array
+    for(int i=0;i<left;i++){
+        l[i]=arr[k++];
+    }
+    for(int j=0;j<right;j++){
+        r[j]=arr[k++];
+    }
+    // Now merging 2 sorted arrays
+    // IMP
+    k=s;
+    int i=0;
+    int j=0;
+    while(i<left&&j<right){
+        if(l[i]<r[j]){
+            arr[k++]=l[i++];
+        }
+        else{
+            arr[k++]=r[j++];
+        }
+        while(i<left){
+            arr[k++]=l[i++];
+        }
+        while(j<right){
+            arr[k++]=r[j++];
+        }
+    }
+}
+void mergesort(int arr[],int s,int e){
+    if(s>=e){
+        return;
+    }
+    int mid=(s+e)/2;
+    mergesort(arr,s,mid);
+    mergesort(arr,mid+1,e);
+    merge(arr,s,e);
+}
+int main(){
+    int n;
+   cin>>n;
+   int arr[n];
+   for(int i=0;i<n;i++){
+       cin>>arr[i];
+   }
+   cout<<"Array befor sorting: ";
+   for(int j=0;j<n;j++){
+       cout<<arr[j]<<" ";
+   }
+   cout<<endl;
+   cout<<"Array after Sorting: ";
+   mergesort(arr,0,n-1);
+   for(int k=0;k<n;k++){
+       cout<<arr[k]<<" ";
+   }
+   cout<<endl;
+   return 0;
+}
+
+
+-----------------------------------------------------------------------------------------
+
+
+//Quick Sort
+#include<bits/stdc++.h>
+using namespace std;
+int partition(int arr[],int s,int e){
+    int pivot=arr[s];
+    // Remember this!
+    int cnt=-1;
+    for(int i=s;i<=e;i++){
+        if(arr[i]<=pivot){
+            cnt++;
+        }
+    }
+    int pivotindex=s+cnt;
+    swap(arr[s],arr[pivotindex]);
+    //Now condition <a|a|>a
+    int i=s;
+    int j=e;
+    while(i<pivotindex&&j>pivotindex){
+        while(arr[i]<pivot){
+            i++;
+        }
+        while(arr[j]>pivot){
+            j--;
+        }
+        if(i<pivotindex&&j>pivotindex){
+            swap(arr[i++],arr[j--]);
+        }
+    }
+    return pivotindex;
+}
+void quicksort(int arr[],int s,int e){
+    if(s>=e){
+        return;
+    }
+    int p=partition(arr,s,e);
+    quicksort(arr,s,p-1);
+    quicksort(arr,p+1,e);
+}
+int main(){
+   int n;
+   cin>>n;
+   int arr[n];
+   for(int i=0;i<n;i++){
+       cin>>arr[i];
+   }
+   cout<<"Array befor sorting: ";
+   for(int j=0;j<n;j++){
+       cout<<arr[j]<<" ";
+   }
+   cout<<endl;
+   cout<<"Array after Sorting: ";
+   quicksort(arr,0,n-1);
+   for(int k=0;k<n;k++){
+       cout<<arr[k]<<" ";
+   }
+   cout<<endl;
+   return 0;
+}
