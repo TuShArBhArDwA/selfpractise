@@ -1,4 +1,10 @@
 // Code for QuickSort
+/*
+Time Complexity:-
+For Best Case -> O(Log2(N))
+For Worst Case -> O(N^2)
+Average -> O(N*Log2(N))
+*/
 #include<bits/stdc++.h>
 using namespace std;
 //
