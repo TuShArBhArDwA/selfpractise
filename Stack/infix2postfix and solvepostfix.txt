@@ -1,0 +1,98 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int prec(char ch){
+    if(ch=='^'){
+        return 3;
+    }
+    else if(ch=='*'||ch=='/'){
+        return 2;
+    }
+    else if(ch=='+'||ch=='-'){
+        return 1;
+    }
+    else{
+        return -1;
+    }
+}
+
+string infixtopostfix(string name){
+    string ans;
+    stack<char>s1;
+    char ch;
+    for(int i=0;name[i]!='\0';i++){
+        ch=name[i];
+        if((ch>='a'&&ch<='z')||(ch>='A'&&ch<='Z')){
+            ans+=ch;
+        }
+        else if(ch=='('){
+            s1.push('(');
+        }
+        else if(ch==')'){
+            while(s1.top()!='('){
+                ans+=s1.top();
+                s1.pop();
+            }
+            s1.pop();
+        }
+        else{
+            while(!s1.empty()&&(prec(s1.top())>=prec(ch))){
+                ans+=s1.top();
+                s1.pop();
+            }
+            s1.push(ch);
+        }
+    }
+    while(!s1.empty()){
+        ans+=s1.top();
+        s1.pop();
+    }
+    return ans;
+}
+
+void solvepostfix(string name){
+    stack<int> s1;
+    char ch;
+    int a,b;
+    int op;
+    for(int i=0;name[i]!='\0';i++){
+        ch=name[i];
+        if(ch>='0'&&ch<='9'){
+            s1.push(ch-'0');
+        }
+        else{
+            b=s1.top();
+            s1.pop();
+            a=s1.top();
+            s1.pop();
+            switch(ch){
+                case '+':op=a+b;
+                break;
+                case '-':op=a-b;
+                break;
+                case '*':op=a*b;
+                break;
+                case '/':op=a/b;
+                break;
+                case '^':op=pow(a,b);
+                break;
+            }
+            s1.push(op);
+        }
+    }
+    cout<<s1.top();
+}
+int main(){
+    //Expected Ouput
+    string name="abcd^e-fgh*+^*+i-";
+    //Testing the code
+    if(name==infixtopostfix("a+b*(c^d-e)^(f+g*h)-i")){
+        cout<<"True";
+    }
+    else{
+        cout<<"False\n";
+        cout<<infixtopostfix("a+b*(c^d-e)^(f+g*h)-i");
+    }
+    solvepostfix("12*34+5-+");
+    return 0;
+}

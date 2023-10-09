@@ -1,0 +1,55 @@
+// Code for QuickSort
+#include<bits/stdc++.h>
+using namespace std;
+//
+int partition(int arr[],int s,int e){
+    int p=arr[s];
+    int cnt=0;
+    //Counting the small and equal element in the array
+    for(int i=s+1;i<=e;i++){
+        if(p>=arr[i]){
+            cnt++;
+        }
+    }
+    int pivotindex=s+cnt;
+    //swapping the element with the element of its original space 
+    swap(arr[pivotindex],arr[s]);
+    int i=s;
+    int j=e;
+    // Now ensuring (<a|a|>a) this condition
+    while(i<pivotindex&&j>pivotindex){
+        while(arr[i]<=p){
+            i++;
+        }
+        while(arr[j]>p){
+            j--;
+        }
+        if(i<pivotindex&&j<pivotindex){
+            swap(arr[i++],arr[j--]);
+        }
+    }
+    return pivotindex;
+}
+void quicksort(int arr[],int s,int e){
+    if(s>=e){
+        return;
+    }
+    //Placing the first element on its original position
+    int p=partition(arr,s,e);
+    //Now re-arranging the position of the rest of the elements
+    quicksort(arr,s,p-1);
+    quicksort(arr,p+1,e);
+}
+int main(){
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    quicksort(arr,0,n-1);
+    for(int j=0;j<n;j++){
+        cout<<arr[j]<<" ";
+    }
+    return 0;
+}

@@ -1,0 +1,100 @@
+#include <iostream>
+using namespace std;
+
+class Node{
+  public:
+  int data;
+  Node* next;
+  Node(int val){
+      this->data=val;
+      this->next=NULL;
+  }
+};
+
+void insertatfirst(Node* &head,int val){
+    Node* temp=new Node(val);
+    temp->next=head;
+    head=temp;
+}
+
+void insertatlast(Node* &tail,int val){
+    Node* temp=new Node(val);
+    tail->next=temp;
+    tail=temp;
+}
+
+void print(Node* &head){
+    Node* temp=head;
+    while(temp!=NULL){
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+    cout<<endl;
+}
+
+void insertatgiven(Node* &head,Node* &tail,int position,int val){
+    if(position==1){
+        insertatfirst(head,val);
+        return;
+    }
+    Node* temp=head;
+    int count=1;
+    while(count<position-1){
+        temp=temp->next;
+        count++;
+    }
+    if(temp->next==NULL){
+        insertatlast(tail,val);
+        return;
+    }
+    Node* nodetoinsert=new Node(val);
+    nodetoinsert->next=temp->next;
+    temp->next=nodetoinsert;
+}
+
+//Deletion can be done by 2 ways -> position and element
+
+void deleteatfirst(Node* &head){
+    Node* temp=head;
+    head=head->next;
+    temp->next=NULL;
+    delete temp;
+}
+
+void deleteatgiven(Node* &head,Node* &tail,int position){
+    if(position==1){
+        deleteatfirst(head);
+        return;
+    }
+    Node* prev=NULL;
+    Node* curr=head;
+    int count=1;
+    while(count<position){
+        prev=curr;
+        curr=curr->next;
+        count++;
+    }
+    if(curr->next==NULL){
+    prev->next=NULL;
+    delete curr;
+    tail=prev;
+    return;
+    }
+    prev->next=curr->next;
+    curr->next=NULL;
+    delete curr;
+}
+
+int main()
+{
+    Node* node1=new Node(20);
+    Node* head=node1;
+    Node* tail=node1;
+    insertatfirst(head,10);
+    insertatlast(tail,30);
+    insertatgiven(head,tail,3,25);
+    deleteatgiven(head,tail,4);
+    print(head);
+    cout<<tail->data;
+    return 0;
+}

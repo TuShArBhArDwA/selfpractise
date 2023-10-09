@@ -1,0 +1,51 @@
+#include<iostream>
+#include<stack>
+using namespace std;
+int main(){
+    int element;
+    int n;
+    int check=1;
+    stack <int> s1;
+    stack <int> s2;
+    while(check!=0){
+        cin>>n;
+        switch(n){
+        case 1:
+        cin>>element;
+        s1.push(element);
+        s2.push(element);
+        cout<<"Element "<<element<<" pushed onto the stack.";
+        break;
+        case 2:
+        if(s1.empty()){
+         cout<<"Stack Underflow. Cannot perform pop operation.";   
+        }
+        else{
+        cout<<"Element "<<s1.top()<<" popped from the stack.";
+        s1.pop();
+        s2.pop();
+        }
+        break;
+        case 3:
+        if(s1.empty()){
+            cout<<"Stack is empty.";
+        }
+        else{
+            cout<<"Elements in the stack: ";
+            while(!s2.empty()){
+                cout<<s2.top()<<" ";
+                s2.pop();
+            }
+        }
+        break;
+        case 4:
+        cout<<"Exiting the program.";
+        check=0;
+        break;
+        default:
+        cout<<"Invalid choice.";
+        break;
+        }
+        cout<<endl;
+    }
+}

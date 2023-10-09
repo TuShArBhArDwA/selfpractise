@@ -1,0 +1,101 @@
+#include <iostream>
+using namespace std;
+
+class Node{
+  public:
+  int data;
+  Node* next;
+  Node(int element){
+      this->data=element;
+      this->next=NULL;
+  }
+};
+
+class Stack{
+    public:
+    Node* head;
+    Node* tail;
+    int count; //count the no. of nodes
+    int size; //limit the size of nodes
+    Stack(int size){
+        head=NULL;
+        tail=NULL;
+        count=0;
+        this->size=size;
+    }
+    void push(int element){
+        if(size==count){
+            cout<<"Stack Overflow";
+            return;
+        }
+        else{
+        count++;
+        if(head==NULL){
+            Node* node1=new Node(element);
+            head=node1;
+            tail=node1;
+        }
+        else{
+            Node* toinsert=new Node(element);
+            tail->next=toinsert;
+            tail=toinsert;
+        }
+    }
+    }
+    void dele(Node* &head,Node* &tail){
+        if(count==1){
+            Node* temp=head;
+            delete temp;
+            head=NULL;
+            tail=NULL;
+            count--;
+            return;
+        }
+        count--;
+        Node* temp=head;
+        Node* prev=NULL;
+        while(temp->next!=NULL){
+            prev=temp;
+            temp=temp->next;
+        }
+        delete temp;
+        tail=prev;
+        
+    }
+    void pop(){
+        if(count==0){
+            cout<<"Stack Underflow";
+        }
+        else{
+            dele(head,tail);
+        }
+    }
+    int peek(){
+        if (head==NULL){
+            cout<<"Stack is Empty!\n";
+            return -1;
+        }
+        else{
+            return tail->data;
+        }
+    }
+    bool isEmpty(){
+        if(count==0){
+            return true;
+        }
+        return false;
+    }
+};
+
+int main()
+{
+    Stack s1(5);
+    s1.push(10);
+    s1.push(20);
+    s1.push(10);
+    s1.push(20);
+    s1.push(10);
+    //s1.pop();
+    cout<<s1.peek();
+    return 0;
+}
