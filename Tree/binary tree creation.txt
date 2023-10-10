@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// Class of Node
+// Class of Node.
 class node{
     public:
     int data;
