@@ -1,4 +1,4 @@
-// To print the elements on the basis of their frequencies arranged in decrement order (if frequency is same then the smallest element is printed respectively)
+// To print the elements on the basis of their frequencies arranged in decrement order (if frequency is same then the smallest element is printed respectively) !
 #include<bits/stdc++.h>
 using namespace std;
 int main(){
