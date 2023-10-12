@@ -1,4 +1,4 @@
-// Code for QuickSort
+// Code for QuickSort .
 #include<bits/stdc++.h>
 using namespace std;
 //
