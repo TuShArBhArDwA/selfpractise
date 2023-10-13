@@ -1,7 +1,8 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<queue>
 using namespace std;
 
-// Class of Node.
+// Class of Node
 class node{
     public:
     int data;
@@ -16,20 +17,52 @@ class node{
 
 // Class of Creating Tree using Node class
 node* tree(node* root){
-    cout<<"Enter the data: ";
     int data;
+    cout<<"Enter the data: ";
     cin>>data;
     root=new node(data);
     // If we don't want any value or want NULL
     if(data==-1){
         return NULL;
     }
-    cout<<"Enter the data you want to insert in the left of "<<data<<endl;
+    cout<<"Enter the data u want to insert at the left of "<<data<<endl;
     root->left=tree(root->left);
-    cout<<"Enter the data you want to insert in the right of "<<data<<endl;
+    cout<<"Enter the data u want to insert at the right of "<<data<<endl;
     root->right=tree(root->right);
     return root;
 }
+
+//LNR
+void inorder(node* root){
+    if(root==NULL){
+        return;
+    }
+    inorder(root->left);
+    cout<<root->data<<" ";
+    inorder(root->right);
+}
+
+//NLR
+void preorder(node* root){
+    if(root==NULL){
+        return;
+    }
+    cout<<root->data<<" ";
+    preorder(root->left);
+    preorder(root->right);
+}
+
+//LRN
+void postorder(node* root){
+    if(root==NULL){
+        return;
+    }
+    postorder(root->left);
+    postorder(root->right);
+    cout<<root->data<<" ";
+}
+
+//LEVEL
 void levelorder(node* root){
     queue <node*> q;
     q.push(root);
@@ -38,30 +71,36 @@ void levelorder(node* root){
         node* temp=q.front();
         q.pop();
         if(temp==NULL){
-        // Previous level is traversed , now need a separator
-        cout<<endl;
-        // IMP
-        if(!q.empty()){
-            // Queue still have some child nodes
-            q.push(NULL);
-        }
+            // Previous level is traversed , now need a separator
+            cout<<endl;
+            // IMP "Queue still have some child nodes"
+            if(!q.empty()){
+                q.push(NULL);
+            }
         }
         else{
-        cout<<temp->data<<" ";
-        if(temp->left){
-            q.push(temp->left);
-        }
-        if(temp->right){
-            q.push(temp->right);
-        }
+            cout<<temp->data<<" ";
+            if(temp->left){
+                q.push(temp->left);
+            }
+            if(temp->right){
+                q.push(temp->right);
+            }
         }
     }
 }
+
 // Main Class
 int main(){
     node* root=NULL;
     root=tree(root);
-    cout<<endl<<"Printing the elements of tree by level order\n";
     levelorder(root);
+    cout<<endl;
+    inorder(root);
+    cout<<endl;
+    preorder(root);
+    cout<<endl;
+    postorder(root);
+    cout<<endl;
     return 0;
 }
