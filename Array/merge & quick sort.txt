@@ -28,13 +28,14 @@ void merge(int arr[],int s,int e){
         else{
             arr[k++]=r[j++];
         }
-        while(i<left){
+        
+    }
+while(i<left){
             arr[k++]=l[i++];
         }
         while(j<right){
             arr[k++]=r[j++];
         }
-    }
 }
 void mergesort(int arr[],int s,int e){
     if(s>=e){
