@@ -1,7 +1,6 @@
 // Code for QuickSort .
 #include<bits/stdc++.h>
 using namespace std;
-//
 int partition(int arr[],int s,int e){
     int p=arr[s];
     int cnt=0;
