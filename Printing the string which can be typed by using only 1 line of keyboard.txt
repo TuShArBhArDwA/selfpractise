@@ -40,7 +40,7 @@ int main()
         
         char temp; // to check for 1st char
         
-        // traversing the whole vector 
+        // traversing the whole vector #
         for(int i=0;i<words.size();i++){
             
             found=1;
