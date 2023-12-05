@@ -32,7 +32,7 @@ int main()
         
         vector<string> ans;
         
-        int found; // var to check 
+        int found; // var to check .
         
         string check1="qwertyuiop";
         string check2="asdfghjkl";
