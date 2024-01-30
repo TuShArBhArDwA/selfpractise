@@ -1,7 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-// func to check for the presence of a char in a string
 bool present(string temp,char ch){
         for(int i=0;temp[i]!='\0';i++){
             if(temp[i]==ch){
@@ -11,7 +9,7 @@ bool present(string temp,char ch){
         return false;
 }
     
-// fun to make sure a char is in lower case 
+// fun to make sure a char is in lower case ...
 char lower(char ch){
     char temp;
     if(ch>='A'&&ch<='Z'){
