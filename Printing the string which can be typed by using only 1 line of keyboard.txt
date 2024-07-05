@@ -9,7 +9,7 @@ bool present(string temp,char ch){
         return false;
 }
     
-// fun to make sure a char is in lower case ...
+// fun to make sure a char is in lower case 
 char lower(char ch){
     char temp;
     if(ch>='A'&&ch<='Z'){
